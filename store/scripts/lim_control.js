@@ -8,6 +8,8 @@ function prepareshutdown()
 {
     if (state.prepareshutdown)
         return
+    if (OvmsMetrics.Value("v.c.charging") === "yes")
+        return
     OvmsEvents.Raise("limcontrol.prepareshutdown")
     state.prepareshuttingdown = performance.now()
 }
